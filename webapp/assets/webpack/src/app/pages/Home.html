@@ -1,0 +1,79 @@
+<template>
+    <div>
+        <label for="search">Pokémon</label>
+        <input type="text" value.bind="search" name="search" id="search">
+        <label for="type1">Type 1</label>
+        <select name="type1" id="type1" value.bind="type1">
+            <option value="">-</option>
+            <option repeat.for="type of types" model.bind="type.id">${type.nameFr}</option>
+        </select>
+        <label for="type2">Type 2</label>
+        <select name="type2" id="type2" value.bind="type2">
+            <option value="">-</option>
+            <option repeat.for="type of types" model.bind="type.id">${type.nameFr}</option>
+        </select>
+        <input type="button" value="Rechercher" click.delegate="submitSearch()">
+    </div>
+    <div>
+        <table>
+            <tr repeat.for="pokemon of pokemonSearch">
+                <td if.bind="pokemon.form">${pokemon.nameFr} (${pokemon.form})</td>
+                <td else>${pokemon.nameFr}</td>
+                <td>${pokemon.hp}</td>
+                <td>${pokemon.attack}</td>
+                <td>${pokemon.defense}</td>
+                <td>${pokemon.spAtk}</td>
+                <td>${pokemon.spDef}</td>
+                <td>${pokemon.speed}</td>
+            </tr>
+        </table>
+    </div>
+    <select value.bind="pokemon1Id" change.delegate="changePokemon(1)">
+        <option value="">-</option>
+        <option repeat.for="pokemon of pokemons" model.bind="pokemon.id">${pokemon.nameFr} ${pokemon.form}</option>
+    </select>
+    <select value.bind="pokemon2Id" change.delegate="changePokemon(2)">
+        <option value="">-</option>
+        <option repeat.for="pokemon of pokemons" model.bind="pokemon.id">${pokemon.nameFr} ${pokemon.form}</option>
+    </select>
+    <select value.bind="pokemon3Id" change.delegate="changePokemon(3)">
+        <option value="">-</option>
+        <option repeat.for="pokemon of pokemons" model.bind="pokemon.id">${pokemon.nameFr} ${pokemon.form}</option>
+    </select>
+    <select value.bind="pokemon4Id" change.delegate="changePokemon(4)">
+        <option value="">-</option>
+        <option repeat.for="pokemon of pokemons" model.bind="pokemon.id">${pokemon.nameFr} ${pokemon.form}</option>
+    </select>
+    <select value.bind="pokemon5Id" change.delegate="changePokemon(5)">
+        <option value="">-</option>
+        <option repeat.for="pokemon of pokemons" model.bind="pokemon.id">${pokemon.nameFr} ${pokemon.form}</option>
+    </select>
+    <select value.bind="pokemon6Id" change.delegate="changePokemon(6)">
+        <option value="">-</option>
+        <option repeat.for="pokemon of pokemons" model.bind="pokemon.id">${pokemon.nameFr} ${pokemon.form}</option>
+    </select>
+    <table>
+        <tr>
+            <td></td>
+            <td>${pokemon1.nameFr}</td>
+            <td>${pokemon2.nameFr}</td>
+            <td>${pokemon3.nameFr}</td>
+            <td>${pokemon4.nameFr}</td>
+            <td>${pokemon5.nameFr}</td>
+            <td>${pokemon6.nameFr}</td>
+            <td>Total Weak</td>
+            <td>Total Resist</td>
+        </tr>
+        <tr repeat.for="coverage of coverages">
+            <td>${coverage.type}</td>
+            <td style.bind="coverage.pokemonCoverage1.style">${coverage.pokemonCoverage1.value}</td>
+            <td style.bind="coverage.pokemonCoverage2.style">${coverage.pokemonCoverage2.value}</td>
+            <td style.bind="coverage.pokemonCoverage3.style">${coverage.pokemonCoverage3.value}</td>
+            <td style.bind="coverage.pokemonCoverage4.style">${coverage.pokemonCoverage4.value}</td>
+            <td style.bind="coverage.pokemonCoverage5.style">${coverage.pokemonCoverage5.value}</td>
+            <td style.bind="coverage.pokemonCoverage6.style">${coverage.pokemonCoverage6.value}</td>
+            <td style.bind="coverage.totalWeak > coverage.totalResist ? 'background-color: #ffc4c4;' : ''">${coverage.totalWeak}</td>
+            <td style.bind="coverage.totalWeak < coverage.totalResist ? 'background-color: #b9ffbd;' : ''">${coverage.totalResist}</td>
+        </tr>
+    </table>
+</template>
